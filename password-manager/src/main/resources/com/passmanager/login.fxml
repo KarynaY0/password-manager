@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.geometry.*?>
+
+<StackPane xmlns:fx="http://javafx.com/fxml"
+           fx:controller="com.passmanager.controller.LoginController"
+           styleClass="root-pane">
+
+    <VBox alignment="CENTER" spacing="0" maxWidth="420"
+          styleClass="login-card">
+
+        <!-- Header -->
+        <VBox alignment="CENTER" spacing="6" styleClass="login-header">
+            <Label text="🔐" styleClass="logo-icon"/>
+            <Label text="SecureVault" styleClass="app-title"/>
+            <Label text="Your encrypted password manager" styleClass="app-subtitle"/>
+        </VBox>
+
+        <!-- Tab bar -->
+        <HBox styleClass="tab-bar">
+            <Button fx:id="btnTabLogin"    text="Login"    onAction="#showLogin"
+                    styleClass="tab-btn, tab-active" HBox.hgrow="ALWAYS" maxWidth="Infinity"/>
+            <Button fx:id="btnTabRegister" text="Register" onAction="#showRegister"
+                    styleClass="tab-btn" HBox.hgrow="ALWAYS" maxWidth="Infinity"/>
+        </HBox>
+
+        <!-- LOGIN pane -->
+        <VBox fx:id="loginPane" spacing="14" styleClass="form-pane">
+            <Label text="Username" styleClass="field-label"/>
+            <TextField fx:id="loginUsername" promptText="Enter your username"
+                       styleClass="text-field"/>
+            <Label text="Master Password" styleClass="field-label"/>
+            <PasswordField fx:id="loginPassword" promptText="Enter your master password"
+                           styleClass="text-field"/>
+            <Button text="Login" onAction="#handleLogin"
+                    styleClass="primary-btn" maxWidth="Infinity"/>
+            <Label fx:id="loginError" styleClass="error-label" wrapText="true"/>
+        </VBox>
+
+        <!-- REGISTER pane -->
+        <VBox fx:id="registerPane" spacing="14" styleClass="form-pane" visible="false"
+              managed="false">
+            <Label text="Choose a Username" styleClass="field-label"/>
+            <TextField fx:id="regUsername" promptText="Enter a username"
+                       styleClass="text-field"/>
+            <Label text="Master Password" styleClass="field-label"/>
+            <PasswordField fx:id="regPassword" promptText="At least 8 characters"
+                           styleClass="text-field"/>
+            <Label text="Confirm Password" styleClass="field-label"/>
+            <PasswordField fx:id="regConfirm" promptText="Repeat the password"
+                           styleClass="text-field"/>
+            <Button text="Create Account" onAction="#handleRegister"
+                    styleClass="primary-btn" maxWidth="Infinity"/>
+            <Label fx:id="regError" styleClass="error-label" wrapText="true"/>
+            <Label fx:id="regSuccess" styleClass="success-label" wrapText="true"/>
+        </VBox>
+
+    </VBox>
+</StackPane>

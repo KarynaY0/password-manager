@@ -1,0 +1,12 @@
+src/main/java/com/passmanager/model/PasswordEntry.java
+src/main/java/com/passmanager/model/User.java
+src/main/java/com/passmanager/util/PasswordHashUtil.java
+src/main/java/com/passmanager/util/AESUtil.java
+src/main/java/com/passmanager/util/PasswordGenerator.java
+src/main/java/com/passmanager/service/AuthService.java
+src/main/java/com/passmanager/service/VaultService.java
+src/main/java/com/passmanager/service/FileService.java
+src/main/java/com/passmanager/controller/VaultController.java
+src/main/java/com/passmanager/controller/LoginController.java
+src/main/java/com/passmanager/MainApp.java
+src/main/java/com/passmanager/Session.java

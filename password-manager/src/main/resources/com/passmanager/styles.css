@@ -1,0 +1,332 @@
+/* ── Root & background ─────────────────────────────────────────────── */
+.root-pane {
+    -fx-background-color: #0f1117;
+    -fx-min-height: 580px;
+}
+
+/* ── Login card ────────────────────────────────────────────────────── */
+.login-card {
+    -fx-background-color: #1a1d27;
+    -fx-background-radius: 18;
+    -fx-padding: 0 0 28 0;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.7), 40, 0.3, 0, 8);
+    -fx-max-width: 420;
+}
+
+.login-header {
+    -fx-background-color: linear-gradient(to bottom right, #1e2235, #141824);
+    -fx-padding: 32 28 24 28;
+    -fx-background-radius: 18 18 0 0;
+}
+
+.logo-icon {
+    -fx-font-size: 48;
+}
+
+.app-title {
+    -fx-font-family: "Georgia";
+    -fx-font-size: 28;
+    -fx-font-weight: bold;
+    -fx-text-fill: #e8eaf6;
+    -fx-letter-spacing: 1;
+}
+
+.app-subtitle {
+    -fx-font-size: 13;
+    -fx-text-fill: #7986cb;
+}
+
+/* ── Tab bar ───────────────────────────────────────────────────────── */
+.tab-bar {
+    -fx-background-color: #13151f;
+    -fx-padding: 0;
+    -fx-spacing: 0;
+}
+
+.tab-btn {
+    -fx-background-color: transparent;
+    -fx-text-fill: #7986cb;
+    -fx-font-size: 14;
+    -fx-padding: 12 0;
+    -fx-cursor: hand;
+    -fx-background-radius: 0;
+    -fx-border-color: transparent transparent #2a2e40 transparent;
+    -fx-border-width: 0 0 2 0;
+}
+
+.tab-btn:hover {
+    -fx-background-color: rgba(121, 134, 203, 0.06);
+    -fx-text-fill: #c5cae9;
+}
+
+.tab-active {
+    -fx-text-fill: #7986cb;
+    -fx-border-color: transparent transparent #7986cb transparent !important;
+    -fx-font-weight: bold;
+}
+
+/* ── Form pane ─────────────────────────────────────────────────────── */
+.form-pane {
+    -fx-padding: 24 28 0 28;
+}
+
+.field-label {
+    -fx-font-size: 12;
+    -fx-text-fill: #9fa8da;
+    -fx-font-weight: bold;
+    -fx-padding: 0 0 -6 0;
+}
+
+.text-field, .password-field {
+    -fx-background-color: #252836;
+    -fx-text-fill: #e8eaf6;
+    -fx-prompt-text-fill: #454a6b;
+    -fx-border-color: #2e3250;
+    -fx-border-radius: 8;
+    -fx-background-radius: 8;
+    -fx-padding: 10 14;
+    -fx-font-size: 13;
+}
+
+.text-field:focused, .password-field:focused {
+    -fx-border-color: #7986cb;
+}
+
+/* ── Buttons ───────────────────────────────────────────────────────── */
+.primary-btn {
+    -fx-background-color: linear-gradient(to right, #5c6bc0, #7986cb);
+    -fx-text-fill: white;
+    -fx-font-size: 14;
+    -fx-font-weight: bold;
+    -fx-padding: 12 0;
+    -fx-background-radius: 10;
+    -fx-cursor: hand;
+    -fx-effect: dropshadow(gaussian, rgba(92,107,192,0.5), 12, 0, 0, 4);
+}
+
+.primary-btn:hover {
+    -fx-background-color: linear-gradient(to right, #6a7bd0, #8796db);
+}
+
+/* ── Labels ────────────────────────────────────────────────────────── */
+.error-label {
+    -fx-text-fill: #ef5350;
+    -fx-font-size: 12;
+    -fx-padding: 0 0 4 0;
+    -fx-visibility: hidden;
+}
+
+.success-label {
+    -fx-text-fill: #66bb6a;
+    -fx-font-size: 12;
+    -fx-padding: 0 0 4 0;
+    -fx-visibility: hidden;
+}
+
+/* ══ VAULT LAYOUT ══════════════════════════════════════════════════════ */
+
+/* ── Sidebar ───────────────────────────────────────────────────────── */
+.sidebar {
+    -fx-background-color: #12141e;
+    -fx-padding: 0 0 16 0;
+    -fx-border-color: transparent #1e2132 transparent transparent;
+    -fx-border-width: 0 1 0 0;
+}
+
+.sidebar-header {
+    -fx-padding: 20 16 14 16;
+    -fx-background-color: linear-gradient(to bottom, #1a1d2e, #12141e);
+}
+
+.sidebar-title {
+    -fx-font-family: "Georgia";
+    -fx-font-size: 18;
+    -fx-font-weight: bold;
+    -fx-text-fill: #c5cae9;
+}
+
+.sidebar-user {
+    -fx-font-size: 12;
+    -fx-text-fill: #7986cb;
+}
+
+.sidebar-btn {
+    -fx-background-color: transparent;
+    -fx-text-fill: #9fa8da;
+    -fx-font-size: 13;
+    -fx-padding: 10 16;
+    -fx-alignment: CENTER_LEFT;
+    -fx-background-radius: 0;
+    -fx-cursor: hand;
+    -fx-border-color: transparent;
+}
+
+.sidebar-btn:hover {
+    -fx-background-color: rgba(121, 134, 203, 0.1);
+    -fx-text-fill: #c5cae9;
+}
+
+.btn-add {
+    -fx-text-fill: #80cbc4;
+}
+
+.btn-add:hover {
+    -fx-background-color: rgba(128, 203, 196, 0.1);
+    -fx-text-fill: #a5d6d1;
+}
+
+.btn-logout {
+    -fx-text-fill: #ef9a9a;
+    -fx-margin: 8 8 4 8;
+}
+
+.btn-logout:hover {
+    -fx-background-color: rgba(239, 154, 154, 0.1);
+    -fx-text-fill: #ef5350;
+}
+
+/* ── Main content ──────────────────────────────────────────────────── */
+.main-content {
+    -fx-background-color: #0f1117;
+    -fx-padding: 20 24;
+}
+
+.top-bar {
+    -fx-padding: 0 0 4 0;
+}
+
+.search-field {
+    -fx-background-color: #1a1d27;
+    -fx-text-fill: #e8eaf6;
+    -fx-prompt-text-fill: #454a6b;
+    -fx-border-color: #2e3250;
+    -fx-border-radius: 10;
+    -fx-background-radius: 10;
+    -fx-padding: 10 16;
+    -fx-font-size: 13;
+}
+
+.search-field:focused {
+    -fx-border-color: #7986cb;
+}
+
+.count-label {
+    -fx-text-fill: #5c6480;
+    -fx-font-size: 12;
+}
+
+/* ── Table ─────────────────────────────────────────────────────────── */
+.entries-table {
+    -fx-background-color: transparent;
+    -fx-border-color: #1e2132;
+    -fx-border-radius: 12;
+    -fx-background-radius: 12;
+}
+
+.entries-table .column-header-background {
+    -fx-background-color: #181b27;
+    -fx-background-radius: 12 12 0 0;
+}
+
+.entries-table .column-header {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent transparent #1e2132 transparent;
+    -fx-border-width: 0 0 1 0;
+    -fx-padding: 10 14;
+}
+
+.entries-table .column-header .label {
+    -fx-text-fill: #7986cb;
+    -fx-font-weight: bold;
+    -fx-font-size: 12;
+}
+
+.entries-table .table-row-cell {
+    -fx-background-color: #13151f;
+    -fx-border-color: transparent transparent #1a1d2b transparent;
+    -fx-border-width: 0 0 1 0;
+    -fx-padding: 2 0;
+}
+
+.entries-table .table-row-cell:hover {
+    -fx-background-color: #1a1d2b;
+}
+
+.entries-table .table-row-cell:selected {
+    -fx-background-color: #1e2340;
+}
+
+.entries-table .table-cell {
+    -fx-text-fill: #c5cae9;
+    -fx-font-size: 13;
+    -fx-padding: 8 14;
+    -fx-border-color: transparent;
+    -fx-background-color: transparent;
+}
+
+.empty-label {
+    -fx-text-fill: #454a6b;
+    -fx-font-size: 14;
+}
+
+/* ── Action buttons in table ───────────────────────────────────────── */
+.action-btn {
+    -fx-background-color: #1e2340;
+    -fx-text-fill: #9fa8da;
+    -fx-font-size: 11;
+    -fx-padding: 4 8;
+    -fx-background-radius: 6;
+    -fx-cursor: hand;
+    -fx-border-color: #2e3860;
+    -fx-border-radius: 6;
+    -fx-border-width: 1;
+}
+
+.action-btn:hover {
+    -fx-background-color: #263070;
+    -fx-text-fill: white;
+}
+
+.btn-danger-small {
+    -fx-text-fill: #ef9a9a;
+    -fx-border-color: #5c2424;
+    -fx-background-color: #2a1515;
+}
+
+.btn-danger-small:hover {
+    -fx-background-color: #4a1a1a;
+    -fx-text-fill: #ef5350;
+}
+
+/* ── Dialogs ───────────────────────────────────────────────────────── */
+.dialog-pane {
+    -fx-background-color: #1a1d27;
+}
+
+.dialog-pane .header-panel {
+    -fx-background-color: #13151f;
+}
+
+.dialog-pane .header-panel .label {
+    -fx-text-fill: #c5cae9;
+}
+
+.dialog-pane .content.label {
+    -fx-text-fill: #9fa8da;
+}
+
+/* ── Scrollbar ─────────────────────────────────────────────────────── */
+.scroll-bar:vertical .thumb {
+    -fx-background-color: #2e3250;
+    -fx-background-radius: 4;
+}
+
+.scroll-bar:vertical .track {
+    -fx-background-color: transparent;
+}
+
+.scroll-bar .increment-button,
+.scroll-bar .decrement-button {
+    -fx-background-color: transparent;
+    -fx-padding: 0;
+}

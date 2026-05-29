@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.geometry.*?>
+
+<BorderPane xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.passmanager.controller.VaultController"
+            styleClass="root-pane">
+
+    <!-- ══ SIDEBAR ══ -->
+    <left>
+        <VBox styleClass="sidebar" spacing="8" minWidth="220" maxWidth="220">
+            <VBox styleClass="sidebar-header" spacing="4">
+                <Label text="🔐 SecureVault" styleClass="sidebar-title"/>
+                <Label fx:id="lblUsername" styleClass="sidebar-user"/>
+            </VBox>
+
+            <Separator/>
+
+            <Button text="➕  Add Password"  onAction="#showAddDialog"
+                    styleClass="sidebar-btn, btn-add" maxWidth="Infinity"/>
+            <Button text="🔍  Search"         onAction="#focusSearch"
+                    styleClass="sidebar-btn" maxWidth="Infinity"/>
+            <Button text="🎲  Generate Password" onAction="#showGeneratorDialog"
+                    styleClass="sidebar-btn" maxWidth="Infinity"/>
+
+            <Region VBox.vgrow="ALWAYS"/>
+
+            <Button text="🔒  Lock &amp; Logout" onAction="#handleLogout"
+                    styleClass="sidebar-btn, btn-logout" maxWidth="Infinity"/>
+        </VBox>
+    </left>
+
+    <!-- ══ MAIN CONTENT ══ -->
+    <center>
+        <VBox styleClass="main-content" spacing="16">
+
+            <!-- Top bar: search + count -->
+            <HBox spacing="10" alignment="CENTER_LEFT" styleClass="top-bar">
+                <TextField fx:id="searchField" promptText="🔍 Search by title…"
+                           styleClass="search-field" HBox.hgrow="ALWAYS" maxWidth="Infinity"
+                           onKeyReleased="#handleSearch"/>
+                <Label fx:id="lblCount" styleClass="count-label"/>
+            </HBox>
+
+            <!-- Entry table -->
+            <TableView fx:id="entriesTable" VBox.vgrow="ALWAYS"
+                       styleClass="entries-table" onMouseClicked="#onRowDoubleClick">
+                <columns>
+                    <TableColumn fx:id="colTitle" text="Title"    prefWidth="200"/>
+                    <TableColumn fx:id="colUrl"   text="URL / App" prefWidth="230"/>
+                    <TableColumn fx:id="colNotes" text="Notes"    prefWidth="220"/>
+                    <TableColumn fx:id="colActions" text="Actions" prefWidth="160"/>
+                </columns>
+                <placeholder>
+                    <Label text="No passwords stored yet. Click ➕ Add Password to begin."
+                           styleClass="empty-label"/>
+                </placeholder>
+            </TableView>
+
+        </VBox>
+    </center>
+
+</BorderPane>
