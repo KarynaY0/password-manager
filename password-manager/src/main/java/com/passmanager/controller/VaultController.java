@@ -44,9 +44,13 @@ public class VaultController {
         setupTable();
         refreshTable("");
 
-        // Save vault on window close
+        // Save & encrypt vault on window close
         MainApp.getPrimaryStage().setOnCloseRequest(e -> {
-            try { vault.saveVault(); } catch (Exception ex) { ex.printStackTrace(); }
+            try {
+                vault.saveVault();
+                com.passmanager.service.FileService.encryptVaultFromDisk(
+                        Session.get().getUsername(), Session.get().getMasterPassword());
+            } catch (Exception ex) { ex.printStackTrace(); }
         });
     }
 
@@ -115,7 +119,7 @@ public class VaultController {
 
             try {
                 vault.addEntry(tfTitle.getText(), tfPass.getText(),
-                               tfUrl.getText(), taNote.getText());
+                        tfUrl.getText(), taNote.getText());
                 vault.saveVault();
                 refreshTable(searchField.getText());
                 showInfo("Entry '" + tfTitle.getText() + "' added successfully.");
@@ -258,7 +262,9 @@ public class VaultController {
 
     @FXML public void handleLogout() {
         try {
-            vault.saveVault(); // encrypt on logout
+            vault.saveVault(); // save in-memory entries to encrypted file
+            com.passmanager.service.FileService.encryptVaultFromDisk(
+                    Session.get().getUsername(), Session.get().getMasterPassword());
         } catch (Exception ex) {
             ex.printStackTrace();
         }

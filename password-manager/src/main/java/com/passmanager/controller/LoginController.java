@@ -65,7 +65,8 @@ public class LoginController {
                 setError(loginError, "Invalid username or password.");
                 return;
             }
-            // Decrypt vault
+            // Decrypt vault into memory and also write plain CSV to disk
+            FileService.decryptVaultToDisk(username, password);
             var entries = FileService.loadVault(username, password);
             VaultService vault = new VaultService(username, password, entries);
             Session.get().login(username, password, vault);

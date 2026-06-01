@@ -62,8 +62,8 @@ public class FileService {
         try (BufferedWriter bw = new BufferedWriter(
                 new FileWriter(USERS_FILE, true))) {
             bw.write(escapeCsv(user.getUsername()) + ","
-                   + escapeCsv(user.getPasswordHash()) + ","
-                   + escapeCsv(user.getSalt()) + "\n");
+                    + escapeCsv(user.getPasswordHash()) + ","
+                    + escapeCsv(user.getSalt()) + "\n");
         }
     }
 
@@ -102,12 +102,49 @@ public class FileService {
      * This is called on logout and on application close.
      */
     public static void saveVault(String username, String masterPassword,
-                                  List<PasswordEntry> entries) throws Exception {
+                                 List<PasswordEntry> entries) throws Exception {
         String csv = buildCsv(entries);
         byte[] csvBytes = csv.getBytes(StandardCharsets.UTF_8);
         byte[] encBytes = AESUtil.encryptBytes(csvBytes, masterPassword);
         Files.write(Paths.get(vaultPath(username)), encBytes,
                 StandardOpenOption.CREATE, StandardOpenOption.TRUNCATE_EXISTING);
+    }
+
+    // ── Disk decrypt / encrypt (for login/logout requirement) ──────────────────
+
+    /**
+     * Decrypt the vault and write the plain CSV to disk.
+     * Called immediately after a successful login.
+     */
+    public static void decryptVaultToDisk(String username, String masterPassword) throws Exception {
+        Path encPath   = Paths.get(vaultPath(username));
+        Path plainPath = Paths.get(DATA_DIR + "/" + username + ".csv");
+
+        if (!Files.exists(encPath)) return; // first login – nothing to decrypt yet
+
+        byte[] encBytes = Files.readAllBytes(encPath);
+        byte[] csvBytes = AESUtil.decryptBytes(encBytes, masterPassword);
+        Files.write(plainPath, csvBytes,
+                StandardOpenOption.CREATE, StandardOpenOption.TRUNCATE_EXISTING);
+    }
+
+    /**
+     * Read the plain CSV from disk, encrypt it, write the .csv.enc file,
+     * then delete the plain file.
+     * Called on logout and on application close.
+     */
+    public static void encryptVaultFromDisk(String username, String masterPassword) throws Exception {
+        Path plainPath = Paths.get(DATA_DIR + "/" + username + ".csv");
+        Path encPath   = Paths.get(vaultPath(username));
+
+        if (!Files.exists(plainPath)) return; // nothing to encrypt
+
+        byte[] csvBytes = Files.readAllBytes(plainPath);
+        byte[] encBytes = AESUtil.encryptBytes(csvBytes, masterPassword);
+        Files.write(encPath, encBytes,
+                StandardOpenOption.CREATE, StandardOpenOption.TRUNCATE_EXISTING);
+
+        Files.delete(plainPath); // remove plain-text file from disk
     }
 
     // ── CSV helpers ────────────────────────────────────────────────────────────
@@ -130,9 +167,9 @@ public class FileService {
         StringBuilder sb = new StringBuilder(CSV_HEADER + "\n");
         for (PasswordEntry e : entries) {
             sb.append(escapeCsv(e.getTitle())).append(",")
-              .append(escapeCsv(e.getEncryptedPassword())).append(",")
-              .append(escapeCsv(e.getUrl())).append(",")
-              .append(escapeCsv(e.getNotes())).append("\n");
+                    .append(escapeCsv(e.getEncryptedPassword())).append(",")
+                    .append(escapeCsv(e.getUrl())).append(",")
+                    .append(escapeCsv(e.getNotes())).append("\n");
         }
         return sb.toString();
     }
